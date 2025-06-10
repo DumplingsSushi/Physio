@@ -1,9 +1,6 @@
 import Home from "./Components/Home";
+import { NavBar } from "./NavBar";
 
 export default function Page() {
-  return (
-    <div >  
-      <Home />
-    </div>
-  );
+  return <NavBar />;
 }
