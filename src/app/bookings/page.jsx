@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
+/* ─────────────────────── Stepper helpers ─────────────────────── */
 const StepCircle = ({ label, index, isActive, isCompleted }) => (
   <div className="flex flex-col items-center text-center">
     <div
@@ -62,6 +63,7 @@ const Stepper = ({ steps, currentStep }) => (
   </div>
 );
 
+/* ─────────────────────── Step 1 – Personal info ─────────────────────── */
 const PersonalInfoForm = ({ onNext }) => {
   const [form, setForm] = useState({
     firstName: "",
@@ -78,6 +80,7 @@ const PersonalInfoForm = ({ onNext }) => {
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
   const isValid = ["firstName", "lastName", "email", "phone"].every(
     (k) => form[k]
   );
@@ -152,7 +155,7 @@ const PersonalInfoForm = ({ onNext }) => {
             placeholder="Additional notes (optional)"
             value={form.notes}
             onChange={handleChange}
-            className="md:col-span-2 w-full rounded-lg border border-gray-300 bg-white/70 px-4 py-2 text-sm transition duration-300 focus:border-emerald-500 focus:bg-white/30 focus:outline-none"
+            className="md:col-span-2 w-full rounded-lg border border-gray-300 bg-white/70 px-4 py-2 text-sm focus:border-emerald-500 focus:bg-white/30 focus:outline-none"
             rows={4}
           />
         </div>
@@ -167,74 +170,71 @@ const PersonalInfoForm = ({ onNext }) => {
   );
 };
 
-const ServiceSelection = ({ onNext }) => {
-  return (
-    <Card className="mx-auto w-full max-w-3xl p-6">
-      <CardContent>
-        <h2 className="mb-6 text-2xl font-semibold text-gray-800">
-          Select Services
-        </h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="flex items-center gap-2">
-            <input type="checkbox" className="accent-emerald-600" /> Kinesiology
-            Taping
+/* ─────────────────────── Step 2 – Service Selection ─────────────────────── */
+const ServiceSelection = ({ onNext }) => (
+  <Card className="mx-auto w-full max-w-3xl p-6">
+    <CardContent>
+      <h2 className="mb-6 text-2xl font-semibold text-gray-800">
+        Select Services
+      </h2>
+      <div className="grid gap-4 md:grid-cols-2">
+        {[
+          "Kinesiology Taping",
+          "Cupping Therapy",
+          "Home Visit Physiotherapy",
+        ].map((svc) => (
+          <label key={svc} className="flex items-center gap-2">
+            <input type="checkbox" className="accent-emerald-600" /> {svc}
           </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" className="accent-emerald-600" /> Cupping
-            Therapy
-          </label>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" className="accent-emerald-600" /> Home Visit
-            Physiotherapy
-          </label>
-        </div>
-        <div className="mt-8 flex justify-end">
-          <Button onClick={onNext} className="gap-2">
-            Next <CalendarCheck size={16} />
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+        ))}
+      </div>
+      <div className="mt-8 flex justify-end">
+        <Button onClick={onNext} className="gap-2">
+          Next <CalendarCheck size={16} />
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
+);
 
-const ScheduleAppointment = ({ onNext }) => {
-  return (
-    <Card className="mx-auto w-full max-w-3xl p-6">
-      <CardContent>
-        <h2 className="mb-6 text-2xl font-semibold text-gray-800">
-          Schedule Appointment
-        </h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <Input type="date" name="date" />
-          <Input type="time" name="time" />
-        </div>
-        <div className="mt-8 flex justify-end">
-          <Button onClick={onNext} className="gap-2">
-            Confirm <CheckCircle size={16} />
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+/* ─────────────────────── Step 3 – Schedule ─────────────────────── */
+const ScheduleAppointment = ({ onNext }) => (
+  <Card className="mx-auto w-full max-w-3xl p-6">
+    <CardContent>
+      <h2 className="mb-6 text-2xl font-semibold text-gray-800">
+        Schedule Appointment
+      </h2>
+      <div className="grid gap-6 md:grid-cols-2">
+        <Input type="date" name="date" />
+        <Input type="time" name="time" />
+      </div>
+      <div className="mt-8 flex justify-end">
+        <Button onClick={onNext} className="gap-2">
+          Confirm <CheckCircle size={16} />
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
+);
 
-const Confirmation = () => {
-  return (
-    <Card className="mx-auto w-full max-w-xl p-6 text-center">
-      <CardContent>
-        <h2 className="mb-4 text-2xl font-bold text-emerald-700">
-          Booking Confirmed!
-        </h2>
-        <p className="mb-6 text-gray-600">
-          Thank you for scheduling with us. We'll contact you shortly.
-        </p>
-        <Button className="mx-auto">Return to Home</Button>
-      </CardContent>
-    </Card>
-  );
-};
+/* ─────────────────────── Step 4 – Confirmation ─────────────────────── */
+const Confirmation = () => (
+  <Card className="mx-auto w-full max-w-xl p-6 text-center">
+    <CardContent>
+      <h2 className="mb-4 text-2xl font-bold text-emerald-700">
+        Booking Confirmed!
+      </h2>
+      <p className="mb-6 text-gray-600">
+        Thank you for scheduling with us. We'll contact you shortly.
+      </p>
+      <Button onClick={() => (window.location.href = "/")} className="mx-auto">
+        Return to Home
+      </Button>
+    </CardContent>
+  </Card>
+);
 
+/* ─────────────────────── Main Page ─────────────────────── */
 export default function Page() {
   const steps = [
     "Personal Information",
@@ -248,30 +248,47 @@ export default function Page() {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-emerald-50 via-white to-emerald-50">
       <NavBar />
+
+      {/* Stepper */}
       <section className="mx-auto mt-12 w-full max-w-5xl px-4">
         <Stepper steps={steps} currentStep={currentStep} />
       </section>
+
+      {/* Step content */}
       <section className="mx-auto mt-10 w-full max-w-5xl px-4 py-8">
         {currentStep === 0 && <PersonalInfoForm onNext={goNext} />}
         {currentStep === 1 && <ServiceSelection onNext={goNext} />}
         {currentStep === 2 && <ScheduleAppointment onNext={goNext} />}
         {currentStep === 3 && <Confirmation />}
       </section>
+
       <Footer />
-      <motion.button
+
+      {/* Floating call button */}
+      <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 shadow-lg md:bottom-28 md:right-8"
       >
-        <Phone className="h-6 w-6 text-white" />
-      </motion.button>
-      <motion.button
+        <a href="tel:+917022474015">
+          <Phone className="h-6 w-6 text-white" />
+        </a>
+      </motion.div>
+
+      {/* Floating WhatsApp button with pre-filled message */}
+      <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg md:bottom-8 md:right-8"
       >
-        <FaWhatsapp className="h-6 w-6 text-white" />
-      </motion.button>
+        <a
+          href="https://wa.me/917022474015?text=Hi%2C%20I'm%20looking%20to%20book%20an%20appointment%20professionally."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaWhatsapp className="h-6 w-6 text-white" />
+        </a>
+      </motion.div>
     </div>
   );
 }
