@@ -3,39 +3,34 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { NavBar } from "../NavBar"; // named export
-import Footer from "../Components/Footer"; // default export
-
+import { NavBar } from "../NavBar";
+import Footer from "../Components/Footer";
 import { Card, CardContent } from "../Components/ui/Card";
 import { Button } from "../Components/ui/Button";
 import { Users, Award, Globe, Phone } from "lucide-react";
 
-/****************************************************************
- 🌟  About Us Page – modern & engaging
-*****************************************************************/
-
-/** Block title helper */
+// 🌟 Section heading
 const SectionHeading = ({ children }) => (
-  <h2 className="mb-6 text-3xl font-bold text-emerald-700 md:text-4xl">
+  <h2 className="mb-6 text-3xl font-bold text-[#4F6A68] md:text-4xl">
     {children}
   </h2>
 );
 
-/** Generic paragraph */
+// Paragraph component
 const P = ({ children }) => (
   <p className="mb-4 text-gray-700 leading-relaxed">{children}</p>
 );
 
-/** Stats block */
+// Stats
 const Stat = ({ icon: Icon, value, label }) => (
   <div className="flex flex-col items-center gap-2">
-    <Icon className="h-8 w-8 text-emerald-600" />
+    <Icon className="h-8 w-8 text-[#6F8A86]" />
     <span className="text-2xl font-bold text-gray-800">{value}</span>
     <span className="text-sm text-gray-600">{label}</span>
   </div>
 );
 
-/** Team member card */
+// Team Card
 const TeamCard = ({ name, role, img }) => (
   <div className="overflow-hidden rounded-xl shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
     <img src={img} alt={name} className="h-60 w-full object-cover" />
@@ -48,10 +43,10 @@ const TeamCard = ({ name, role, img }) => (
 
 export default function Page() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-emerald-50 via-white to-emerald-50">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#EDF3F2] via-white to-[#EDF3F2]">
       <NavBar />
 
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="mx-auto mt-20 max-w-4xl px-4 text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 md:text-5xl">
           Empowering Recovery &amp; Wellness
@@ -61,10 +56,12 @@ export default function Page() {
           technology and a patient‑first mindset to help more than 10,000 people
           move pain‑free and live their best lives.
         </P>
-        <Button className="mt-4 px-8 py-3">Book an Appointment</Button>
+        <Button className="mt-4 px-8 py-3 bg-[#6F8A86] hover:bg-[#5C7C78] text-white">
+          Book an Appointment
+        </Button>
       </section>
 
-      {/* Story */}
+      {/* Story Section */}
       <section className="mx-auto mt-16 max-w-5xl px-4 md:px-8">
         <Card className="rounded-2xl border border-white/20 bg-white/60 backdrop-blur-xl shadow-xl">
           <CardContent className="p-8">
@@ -107,14 +104,14 @@ export default function Page() {
         </Card>
       </section>
 
-      {/* Stats */}
+      {/* Stats Section */}
       <section className="mx-auto mt-16 flex max-w-4xl flex-wrap items-center justify-around gap-10 px-4 text-center">
         <Stat icon={Users} value="10k+" label="Patients Treated" />
         <Stat icon={Globe} value="6" label="Cities" />
         <Stat icon={Award} value="20+" label="Awards" />
       </section>
 
-      {/* Team */}
+      {/* Meet the Team */}
       <section className="mx-auto mt-20 max-w-6xl px-4 md:px-8">
         <SectionHeading>Meet the Team</SectionHeading>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,30 +146,30 @@ export default function Page() {
               role: "Clinical Psychologist",
               img: "/team/6.jpg",
             },
-          ].map((m) => (
-            <TeamCard key={m.name} {...m} />
+          ].map((member) => (
+            <TeamCard key={member.name} {...member} />
           ))}
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="mx-auto mt-24 mb-32 max-w-3xl rounded-2xl bg-emerald-600 px-8 py-12 text-center text-white shadow-xl">
+      <section className="mx-auto mt-24 mb-32 max-w-3xl rounded-2xl bg-[#6F8A86] px-8 py-12 text-center text-white shadow-xl">
         <h3 className="mb-4 text-2xl font-semibold md:text-3xl">
           Ready to start your recovery journey?
         </h3>
-        <Button className="bg-white text-emerald-700 hover:bg-gray-100">
+        <Button className="bg-white text-[#4F6A68] hover:bg-gray-100">
           Schedule a Consultation
         </Button>
       </section>
 
       <Footer />
 
-      {/* Floating call button */}
+      {/* Floating Call Button */}
       <motion.a
         href="tel:+911234567890"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 shadow-lg md:bottom-28 md:right-8"
+        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#6F8A86] shadow-lg md:bottom-28 md:right-8"
       >
         <Phone className="h-6 w-6 text-white" />
       </motion.a>

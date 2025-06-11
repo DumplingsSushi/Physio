@@ -16,16 +16,24 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
+/* ───────────────────────── Palette ───────────────────────── */
+const COLORS = {
+  primary: "#6F8A86",
+  primaryText: "#4F6A68",
+  light: "#EDF3F2",
+  tint: "#B2D5C7",
+};
+
 /* ─────────────────────── Stepper helpers ─────────────────────── */
 const StepCircle = ({ label, index, isActive, isCompleted }) => (
   <div className="flex flex-col items-center text-center">
     <div
       className={
-        `flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all ` +
+        "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all " +
         (isActive
-          ? "border-emerald-600 bg-emerald-600 text-white shadow-lg"
+          ? "border-[#6F8A86] bg-[#6F8A86] text-white shadow-lg"
           : isCompleted
-          ? "border-emerald-600 bg-white text-emerald-600"
+          ? "border-[#6F8A86] bg-white text-[#6F8A86]"
           : "border-gray-400 bg-white text-gray-400")
       }
     >
@@ -51,7 +59,7 @@ const Stepper = ({ steps, currentStep }) => (
           <div className="relative h-1 flex-1">
             <div className="absolute inset-0 rounded-full bg-gray-200" />
             <motion.div
-              className="absolute inset-0 rounded-full bg-emerald-600"
+              className="absolute inset-0 rounded-full bg-[#6F8A86]"
               initial={{ width: 0 }}
               animate={{ width: `${currentStep > i ? 100 : 0}%` }}
               transition={{ duration: 0.4 }}
@@ -155,8 +163,8 @@ const PersonalInfoForm = ({ onNext }) => {
             placeholder="Additional notes (optional)"
             value={form.notes}
             onChange={handleChange}
-            className="md:col-span-2 w-full rounded-lg border border-gray-300 bg-white/70 px-4 py-2 text-sm focus:border-emerald-500 focus:bg-white/30 focus:outline-none"
             rows={4}
+            className="md:col-span-2 w-full rounded-lg border border-gray-300 bg-white/70 px-4 py-2 text-sm focus:border-[#6F8A86] focus:bg-white/30 focus:outline-none"
           />
         </div>
 
@@ -170,7 +178,7 @@ const PersonalInfoForm = ({ onNext }) => {
   );
 };
 
-/* ─────────────────────── Step 2 – Service Selection ─────────────────────── */
+/* ─────────────────────── Step 2 – Service selection (Updated) ─────────────────────── */
 const ServiceSelection = ({ onNext }) => (
   <Card className="mx-auto w-full max-w-3xl p-6">
     <CardContent>
@@ -179,12 +187,17 @@ const ServiceSelection = ({ onNext }) => (
       </h2>
       <div className="grid gap-4 md:grid-cols-2">
         {[
+          "🏃‍♂ Sports Physiotherapy",
+          "🦴 Orthopaedic Physiotherapy",
+          "👵 Geriatric Physiotherapy",
+          "🧠 Neurological Physiotherapy",
+          "❤‍🩹 Cardiorespiratory Physiotherapy",
           "Kinesiology Taping",
           "Cupping Therapy",
           "Home Visit Physiotherapy",
         ].map((svc) => (
           <label key={svc} className="flex items-center gap-2">
-            <input type="checkbox" className="accent-emerald-600" /> {svc}
+            <input type="checkbox" className="accent-[#6F8A86]" /> {svc}
           </label>
         ))}
       </div>
@@ -221,7 +234,7 @@ const ScheduleAppointment = ({ onNext }) => (
 const Confirmation = () => (
   <Card className="mx-auto w-full max-w-xl p-6 text-center">
     <CardContent>
-      <h2 className="mb-4 text-2xl font-bold text-emerald-700">
+      <h2 className="mb-4 text-2xl font-bold text-[#4F6A68]">
         Booking Confirmed!
       </h2>
       <p className="mb-6 text-gray-600">
@@ -246,7 +259,7 @@ export default function Page() {
   const goNext = () => setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-emerald-50 via-white to-emerald-50">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#EDF3F2] via-white to-[#EDF3F2]">
       <NavBar />
 
       {/* Stepper */}
@@ -264,22 +277,22 @@ export default function Page() {
 
       <Footer />
 
-      {/* Floating call button */}
+      {/* Floating call */}
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 shadow-lg md:bottom-28 md:right-8"
+        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#6F8A86] shadow-lg md:bottom-28 md:right-8"
       >
         <a href="tel:+917022474015">
           <Phone className="h-6 w-6 text-white" />
         </a>
       </motion.div>
 
-      {/* Floating WhatsApp button with pre-filled message */}
+      {/* Floating WhatsApp */}
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-lg md:bottom-8 md:right-8"
+        className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#B2D5C7] to-[#6F8A86] shadow-lg md:bottom-8 md:right-8"
       >
         <a
           href="https://wa.me/917022474015?text=Hi%2C%20I'm%20looking%20to%20book%20an%20appointment%20professionally."

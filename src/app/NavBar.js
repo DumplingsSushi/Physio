@@ -1,4 +1,3 @@
-// src/app/NavBar.jsx
 "use client";
 
 import React, { useState } from "react";
@@ -9,70 +8,62 @@ export const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const toggleMobile = () => setMobileOpen(!mobileOpen);
 
+  // label list only (all will point to /bookings)
   const services = [
-    "Physiotherapy",
-    "Corporate Physiotherapy",
-    "Patient Education",
-    "Post Op Rehabilitation",
-    "Manual Therapy",
-    "K-Taping",
-    "Cupping Therapy",
-    "Needling Therapy",
-    "Neurological Rehabilitation",
-    "Surgery Prevention",
-    "Body & Spine Alignment",
-    "Posture Correction",
+    "Sports Physiotherapy",
+    "Orthopaedic Physiotherapy",
+    "Geriatric Physiotherapy",
+    "Neurological Physiotherapy",
+    "Cardiorespiratory Physiotherapy",
   ];
 
-  const toSlug = (text) =>
-    text
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
-
   return (
-    <nav className="bg-black">
+    <nav className="bg-[#4F6A68]">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
             src="/logo.jpg"
             alt="Logo"
-            width={140}
+            width={40}
             height={40}
-            className="h-10 w-auto"
+            className="h-10 w-10 rounded-full"
           />
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop menu */}
         <div className="hidden items-center space-x-4 md:flex">
           <Link
             href="/"
-            className="rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             About Us
           </Link>
 
-          {/* Services Dropdown */}
+          {/* Services → Bookings */}
           <div className="relative group">
-            <button className="rounded-lg p-2 text-white transition hover:bg-white hover:text-black">
+            <Link
+              href="/bookings"
+              className="rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
+            >
               Services
-            </button>
+            </Link>
 
+            {/* Hover list – every option also links to /bookings */}
             <div className="invisible absolute left-0 z-20 mt-2 w-64 translate-y-2 rounded-lg bg-white py-2 opacity-0 shadow-lg transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              {services.map((svc) => (
+              {services.map((label) => (
                 <Link
-                  key={svc}
-                  href={`/services/${toSlug(svc)}`}
-                  className="block px-4 py-2 text-sm text-gray-700 transition hover:bg-emerald-100 hover:text-emerald-700"
+                  key={label}
+                  href="/bookings"
+                  className="block px-4 py-2 text-sm text-gray-700 transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
                 >
-                  {svc}
+                  {label}
                 </Link>
               ))}
             </div>
@@ -80,19 +71,19 @@ export const NavBar = () => {
 
           <Link
             href="/bookings"
-            className="rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Bookings
           </Link>
           <Link
             href="/contact"
-            className="rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Contact
           </Link>
         </div>
 
-        {/* Hamburger Menu (Mobile) */}
+        {/* Mobile burger */}
         <button
           onClick={toggleMobile}
           className="p-2 text-white md:hidden focus:outline-none"
@@ -129,48 +120,36 @@ export const NavBar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {mobileOpen && (
         <div className="space-y-1 px-4 pb-4 md:hidden">
           <Link
             href="/"
-            className="block rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="block rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="block rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="block rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             About Us
           </Link>
-
-          <details className="group">
-            <summary className="cursor-pointer rounded-lg p-2 text-white transition hover:bg-white hover:text-black">
-              Services
-            </summary>
-            <div className="mt-2 pl-4">
-              {services.map((svc) => (
-                <Link
-                  key={svc}
-                  href={`/services/${toSlug(svc)}`}
-                  className="block rounded-md px-4 py-2 text-sm text-gray-200 transition hover:bg-emerald-100 hover:text-emerald-700"
-                >
-                  {svc}
-                </Link>
-              ))}
-            </div>
-          </details>
-
           <Link
             href="/bookings"
-            className="block rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="block rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
+          >
+            Services
+          </Link>
+          <Link
+            href="/bookings"
+            className="block rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Bookings
           </Link>
           <Link
             href="/contact"
-            className="block rounded-lg p-2 text-white transition hover:bg-white hover:text-black"
+            className="block rounded-lg p-2 text-white transition hover:bg-[#CDD4BC] hover:text-[#4F6A68]"
           >
             Contact
           </Link>

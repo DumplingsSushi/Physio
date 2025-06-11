@@ -1,14 +1,13 @@
-// src/app/home/Page.jsx
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // ✅ Add this
 import { useState, useEffect } from "react";
 import { Button } from "../Components/ui/Button";
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 
 export default function CompleteHealthcarePage() {
-  /* ─────────────────────────── Slideshow images ───────────────────────── */
   const images = [
     "/hero1.png",
     "/hero2.png",
@@ -17,7 +16,6 @@ export default function CompleteHealthcarePage() {
     "/hero5.png",
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
     const id = setInterval(
       () => setCurrentIndex((i) => (i + 1) % images.length),
@@ -26,9 +24,8 @@ export default function CompleteHealthcarePage() {
     return () => clearInterval(id);
   }, []);
 
-  /* ─────────────────────────── Helpers ───────────────────────── */
-  const Card = ({ title, price, text, img, cta }) => (
-    <div className="overflow-hidden rounded-xl border border-emerald-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+  const Card = ({ title, img, children }) => (
+    <div className="overflow-hidden rounded-xl border border-[#E0E8E7] bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
       <Image
         src={img}
         alt={title}
@@ -37,33 +34,15 @@ export default function CompleteHealthcarePage() {
         className="h-48 w-full object-cover"
       />
       <div className="p-6 text-left">
-        <h3 className="mb-2 text-lg font-semibold text-emerald-700">{title}</h3>
-        <p className="mb-2 text-gray-600">{text}</p>
-        <p className="mb-4 font-medium">Starting at ₹{price}</p>
-        <Button className="px-4 py-2 text-sm">{cta}</Button>
+        <h3 className="mb-3 text-lg font-semibold text-[#4F6A68]">{title}</h3>
+        {children}
       </div>
     </div>
   );
 
-  const Speciality = ({ img, label }) => (
-    <div className="text-center">
-      <Image
-        src={img}
-        alt={label}
-        width={300}
-        height={200}
-        className="h-44 w-full rounded object-cover"
-      />
-      <div className="mt-2 bg-emerald-50 py-2 font-medium text-emerald-800">
-        {label}
-      </div>
-    </div>
-  );
-
-  /* ─────────────────────────── Page JSX ───────────────────────── */
   return (
-    <div className="bg-gradient-to-b from-emerald-50 via-white to-emerald-50">
-      {/* Hero / slideshow */}
+    <div className="bg-gradient-to-b from-[#EDF3F2] via-white to-[#EDF3F2]">
+      {/* HERO */}
       <div className="relative h-[520px] w-full overflow-hidden">
         <motion.div
           key={currentIndex}
@@ -74,7 +53,7 @@ export default function CompleteHealthcarePage() {
         >
           <Image
             src={images[currentIndex]}
-            alt="Hero slide"
+            alt="Hero"
             fill
             className="object-cover"
             priority
@@ -84,23 +63,23 @@ export default function CompleteHealthcarePage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
           <h1 className="mb-4 text-4xl font-bold md:text-5xl">
             Welcome to{" "}
-            <span className="text-emerald-400">
+            <span className="text-[#6F8A86]">
               Mobility Mentor Physiotherapy
             </span>
           </h1>
           <p className="max-w-xl px-4 text-lg text-gray-200">
-            Comprehensive physiotherapy &amp; rehabilitation for a pain‑free
+            Comprehensive physiotherapy &amp; rehabilitation for a pain-free
             life.
           </p>
         </div>
       </div>
 
-      {/* About */}
-      <section className="mx-auto mt-20 max-w-7xl grid gap-10 px-4 md:grid-cols-2 md:px-10">
+      {/* WHY CHOOSE US */}
+      <section className="mx-auto mt-20 grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:px-10">
         <div className="flex justify-center">
           <Image
             src="/hero4.png"
-            alt="Doctor"
+            alt="Therapist"
             width={460}
             height={460}
             className="rounded-2xl shadow-lg"
@@ -108,15 +87,15 @@ export default function CompleteHealthcarePage() {
         </div>
         <div className="flex flex-col justify-center text-center md:text-left">
           <h2 className="mb-6 text-3xl font-bold text-gray-800 md:text-4xl">
-            Why choose <span className="text-emerald-600">C7Physio</span>
+            Why choose <span className="text-[#6F8A86]">Mobility Mentor</span>
           </h2>
           <p className="mb-8 text-lg text-gray-700">
-            Trusted for over 5 years, we deliver evidence‑based care that
+            Trusted for over 5 years, we deliver evidence-based care that
             prevents surgery, relieves chronic pain and restores mobility.
           </p>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl bg-white p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-bold text-emerald-700">
+              <h3 className="mb-2 text-xl font-bold text-[#4F6A68]">
                 NO SURGERY
               </h3>
               <p className="text-gray-600">
@@ -125,8 +104,8 @@ export default function CompleteHealthcarePage() {
               </p>
             </div>
             <div className="rounded-xl bg-white p-6 shadow-md">
-              <h3 className="mb-2 text-xl font-bold text-emerald-700">
-                EXPERT PHYSIO
+              <h3 className="mb-2 text-xl font-bold text-[#4F6A68]">
+                EXPERT PHYSIOS
               </h3>
               <p className="text-gray-600">
                 Specialists in sports injuries, chronic pain &amp;
@@ -137,72 +116,67 @@ export default function CompleteHealthcarePage() {
         </div>
       </section>
 
-      {/* Popular treatments */}
+      {/* OUR SERVICES */}
       <section className="mx-auto mt-24 max-w-7xl px-4 md:px-10">
         <div className="mb-12 text-center">
           <h2 className="mb-3 text-4xl font-bold text-gray-800">
-            Popular Treatments
-          </h2>
-          <p className="text-gray-600">
-            Fast, effective solutions for pain &amp; mobility
-          </p>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          <Card
-            title="Kinesiology Taping"
-            price="500"
-            text="Professional taping for pain relief & support."
-            img="/hero1.png"
-            cta="Learn More"
-          />
-          <Card
-            title="Cupping Therapy"
-            price="750"
-            text="Traditional & modern cupping to relax muscles."
-            img="/hero4.png"
-            cta="Explore"
-          />
-          <Card
-            title="Home Visit Physiotherapy"
-            price="800"
-            text="Expert care in the comfort of your home."
-            img="/hero3.png"
-            cta="Book Now"
-          />
-        </div>
-      </section>
-
-      {/* Specialities */}
-      <section className="mx-auto mt-24 bg-emerald-50 py-16 px-4 md:px-10">
-        <div className="mb-12 text-center">
-          <h2 className="text-4xl font-bold text-emerald-700">
-            Our <span className="text-gray-800">Specialities</span>
+            Our Services
           </h2>
         </div>
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 md:grid-cols-4">
-          {[
-            ["/hero1.png", "Orthopedic"],
-            ["/hero2.png", "Neurology"],
-            ["/hero5.png", "Sports Injury"],
-            ["/hero3.png", "Home Visit"],
-            ["/hero3.png", "Obesity Rehab"],
-            ["/hero2.png", "Neuro Rehab"],
-            ["/hero1.png", "Pediatrics"],
-          ].map(([img, label]) => (
-            <Speciality key={label} img={img} label={label} />
-          ))}
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <Card title="🏃‍♂ Sports Physiotherapy" img="/hero1.png">
+            <p className="text-sm text-gray-600">
+              Enhancing performance, preventing injuries, and supporting
+              recovery for athletes and active individuals. Acute injuries,
+              overuse syndromes, and return-to-sport training.
+            </p>
+          </Card>
+
+          <Card title="🦴 Orthopaedic Physiotherapy" img="/hero2.png">
+            <p className="text-sm text-gray-600">
+              Restoring strength, mobility &amp; function after fractures, joint
+              replacements, ligament reconstructions, and chronic back / neck
+              pain.
+            </p>
+          </Card>
+
+          <Card title="👵 Geriatric Physiotherapy" img="/hero3.png">
+            <p className="text-sm text-gray-600">
+              Promoting independence in older adults—balance training, fall
+              prevention, osteoporosis management, and post-surgical rehab.
+            </p>
+          </Card>
+
+          <Card title="🧠 Neurological Physiotherapy" img="/hero4.png">
+            <p className="text-sm text-gray-600">
+              Stroke, Parkinson’s, MS, spinal cord injuries—goal-oriented
+              neuro-rehabilitation to regain motor control, balance, and
+              functional independence.
+            </p>
+          </Card>
+
+          <Card title="❤‍🩹 Cardiorespiratory Physiotherapy" img="/hero5.png">
+            <p className="text-sm text-gray-600">
+              Improving lung function and endurance for COPD, post-COVID
+              recovery, cardiac surgery rehab, and heart failure management.
+            </p>
+          </Card>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="mx-auto mt-24 mb-32 flex max-w-4xl flex-col items-center rounded-2xl bg-emerald-600 px-8 py-12 text-center text-white shadow-xl">
+      <section className="mx-auto mt-24 mb-32 flex max-w-4xl flex-col items-center rounded-2xl bg-[#6F8A86] px-8 py-12 text-center text-white shadow-xl">
         <h3 className="mb-4 text-2xl font-semibold md:text-3xl">
-          Ready to live pain‑free?
+          Ready to live pain-free?
         </h3>
-        <Button className="bg-white text-emerald-700 hover:bg-gray-100">
-          Book Appointment
-        </Button>
+        <Link href="/bookings">
+          {" "}
+          {/* ✅ Now this will navigate to Bookings */}
+          <Button className="bg-white text-[#4F6A68] hover:bg-gray-100">
+            Book Appointment
+          </Button>
+        </Link>
       </section>
 
       {/* Floating call */}
@@ -210,7 +184,7 @@ export default function CompleteHealthcarePage() {
         href="tel:+911234567890"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 shadow-lg md:bottom-28 md:right-8"
+        className="fixed bottom-24 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#6F8A86] shadow-lg md:bottom-28 md:right-8"
       >
         <Phone className="h-6 w-6 text-white" />
       </motion.a>

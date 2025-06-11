@@ -3,15 +3,16 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-6 px-4 md:px-10">
+    <footer className="bg-[#4F6A68] text-white pt-16 pb-6 px-4 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* About Us */}
         <div>
           <h3 className="text-xl font-bold mb-4">About Us</h3>
-          <p className="text-gray-300 mb-4">
-            C7Physio is one of the best physiotherapy Clinic in Jaipur known for
-            friendly environment and proper treatment. Best Clinic for
-            Musculoskeletal pain, Sports Injury and rehabilitation.
+          <p className="text-[#EDF3F2] mb-4">
+            Mobility Mentor Physiotherapy is a leading clinic in Bengaluru known
+            for its friendly environment and evidence-based care. We specialise
+            in musculoskeletal pain, sports injury management, neurological
+            rehab, and more.
           </p>
           <div className="flex space-x-4 mt-4">
             <Link href="#">
@@ -37,7 +38,7 @@ export default function Footer() {
         {/* Useful Links */}
         <div>
           <h3 className="text-xl font-bold mb-4">Useful Links</h3>
-          <ul className="space-y-3 text-gray-300">
+          <ul className="space-y-3 text-[#EDF3F2]">
             <li>
               <Link href="#">Home</Link>
             </li>
@@ -51,10 +52,10 @@ export default function Footer() {
               <Link href="#">Blogs</Link>
             </li>
             <li>
-              <Link href="#">Our Speciality</Link>
+              <Link href="#">Our Specialties</Link>
             </li>
             <li>
-              <Link href="#">C7Physio Wallet</Link>
+              <Link href="#">Mobility Mentor Wallet</Link>
             </li>
             <li>
               <Link href="#">Contact</Link>
@@ -71,37 +72,29 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Services Links */}
+        {/* Service Links */}
         <div>
-          <h3 className="text-xl font-bold mb-4">Services Links</h3>
-          <ul className="space-y-3 text-gray-300">
-            <li>Physiotherapy</li>
-            <li>Patient Education</li>
-            <li>Manual Therapy</li>
-            <li>Cupping Therapy</li>
-            <li>Neurological Rehabilitation</li>
-            <li>Posture Correction</li>
-            <li>Corporate Physiotherapy</li>
-            <li>Post Op Rehabilitation</li>
-            <li>Kinesio Taping</li>
-            <li>Needling Therapy</li>
-            <li>Surgery Prevention</li>
-            <li>Body & Spine Alignment</li>
+          <h3 className="text-xl font-bold mb-4">Service Links</h3>
+          <ul className="space-y-3 text-[#EDF3F2]">
+            <li>Sports Physiotherapy</li>
+            <li>Orthopaedic Physiotherapy</li>
+            <li>Geriatric Physiotherapy</li>
+            <li>Neurological Physiotherapy</li>
+            <li>Cardiorespiratory Physiotherapy</li>
           </ul>
         </div>
 
         {/* Quick Contact */}
         <div>
           <h3 className="text-xl font-bold mb-4">Quick Contact</h3>
-          <p className="text-gray-300 mb-2">+91-8756700567</p>
-          <p className="text-gray-300 mb-2">hello@c7physio.in</p>
-          <p className="text-gray-300">O-5 Hospital Road C-Scheme Jaipur.</p>
+          <p className="text-[#EDF3F2] mb-2">+91 70224 74015</p>
+          <p className="text-[#EDF3F2] mb-2">hello@mobilitymentor.in</p>
+          <p className="text-[#EDF3F2]">123 MG Road, Bengaluru, KA 560001</p>
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="border-t border-gray-700 mt-12 pt-6 text-center text-gray-400 text-sm">
-        © 2025 C7Physio Healthcare. All Rights Reserved
+      <div className="border-t border-[#EDF3F2]/20 mt-12 pt-6 text-center text-[#DDE6E4] text-sm">
+        © 2025 Mobility Mentor Physiotherapy. All Rights Reserved
       </div>
     </footer>
   );
